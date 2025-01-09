@@ -10,5 +10,5 @@ export const globalErrorHandler = (
   const message = "Something went wrong";
   res
     .status(status.INTERNAL_SERVER_ERROR)
-    .json({ success: false, message, error: err });
+    .json({ success: false, message: err.message || message, error: err });
 };

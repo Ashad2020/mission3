@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 
 const userSchema = new Schema(
   {
-    id: { type: String, required: true },
+    id: { type: String, required: true, unique: true },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -26,8 +26,8 @@ const userSchema = new Schema(
 // pre hook, will work on create and save method
 userSchema.pre("save", async function (next) {
   // console.log(this, "Pre hook, We will save the data");
-  const user = this;
-  user.password = await bcrypt.hash(user.password, Number(config.BCRYPT_SALT));
+
+  this.password = await bcrypt.hash(this.password, Number(config.BCRYPT_SALT));
   next();
 });
 userSchema.post("save", function (doc, next) {

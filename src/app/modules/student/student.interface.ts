@@ -25,7 +25,7 @@ export type TStudent = {
   user: Types.ObjectId;
   name: TUserName;
   gender: "male" | "female" | "other";
-  dateOfBirth?: string;
+  dateOfBirth?: Date;
   contactNo: string;
   email: string;
   emergencyContactNo: string;
@@ -35,6 +35,7 @@ export type TStudent = {
   guardian: TGuardian;
   localGuardian: TLocalGuardian;
   profileImg?: string;
+  addmissionSemester: Types.ObjectId;
   isDeleted: boolean;
 };
 // creating static

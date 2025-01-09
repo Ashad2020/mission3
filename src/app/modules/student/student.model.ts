@@ -76,12 +76,10 @@ const studentSchema = new Schema<TStudent, StudentModel>(
     id: {
       type: String,
       required: [true, "Student ID is required"],
-      unique: true,
     },
     user: {
       type: Schema.Types.ObjectId,
       required: [true, "User Id is required"],
-      unique: true,
       ref: "User",
     },
 
@@ -97,7 +95,7 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       },
       required: [true, "Gender is required"],
     },
-    dateOfBirth: String,
+    dateOfBirth: { type: Date },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -133,7 +131,10 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       required: [true, "Local guardian details are required"],
     },
     profileImg: { type: String },
-
+    addmissionSemester: {
+      type: Schema.Types.ObjectId,
+      ref: "AcademicSemester",
+    },
     isDeleted: {
       type: Boolean,
       default: false,
